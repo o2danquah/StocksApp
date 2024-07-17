@@ -15,9 +15,7 @@ app.use(express.json())
 db();
 
 
-app.use("/", (req, res) => {
-    res.send("server is active")
-})
+
 
 app.get('/', (req, res) =>{
     res.send("Server is active")
