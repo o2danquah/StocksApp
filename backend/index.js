@@ -17,7 +17,7 @@ mongoose.connect("mongodb+srv://papa10058:Layzer2511@stocks.cjlx8n6.mongodb.net/
     console.log(err)
 })
 
-
+app.use(express.json());
 
 
 
