@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors")
-const mongoose = require("mongoose")
 const nodemailer = require("nodemailer");
 const { differenceInCalendarMonths } = require("date-fns");
 const nodeCron = require("node-cron");
@@ -10,11 +9,11 @@ const db  = require("./dbconnection")
 const app = express();
 app.use(cors());
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: true}))
 
 
 db();
-app.use(express.json());
+
 
 
 
