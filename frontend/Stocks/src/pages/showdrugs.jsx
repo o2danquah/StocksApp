@@ -9,7 +9,7 @@ const Showdrugs = () => {
 
 const [drugs, setValues] = useState([""]);
 useEffect(() => {
-    axios.get("http://localhost:8081/showdrugs").then((res) => {
+    axios.get("https://stocks-app-lyart.vercel.app/showdrugs").then((res) => {
       setValues(res.data)
       
     }).catch(err => console.log(err))
@@ -25,7 +25,7 @@ useEffect(() => {
 
 const handleDelete = async (id) => {
   try {
-    await axios.delete("http://localhost:8081/showdrugs/"+id)
+    await axios.delete("https://stocks-app-lyart.vercel.app/showdrugs"+id)
     window.location.reload()
   } catch (error) {
     console.log(error)

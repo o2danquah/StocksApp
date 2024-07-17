@@ -12,7 +12,7 @@ const WelcomePage = () => {
           <div className="card" style={{borderRadius: '1rem', background: 'white'}}>
            
             <div className="card-body p-5 text-center">
-                <label style={{fontFamily:"sans-serif", fontSize:"40px"}}>Welcome to Stockz</label>
+                <label style={{fontFamily:"sans-serif", fontSize:"40px"}}>Welcome to Stocks</label>
                  
                  
                  <div className="container-login100-form-btn m-t-17 pt-3 ">

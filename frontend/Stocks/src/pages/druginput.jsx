@@ -24,7 +24,7 @@ const DrugInputs = () => {
     const currMonth = new Date().toLocaleString("en-US", { month: "2-digit" })
     const currYear = new Date().getFullYear();
     const DateAdded = currYear + "-" + currMonth + "-" + currDay;      
-    axios.post("http://localhost:8081/druginput", {DrugName, DrugCategory, DrugID, DrugQuantity, DateExpiry, DateAdded}).then(res => {
+    axios.post("https://stocks-app-lyart.vercel.app/druginput", {DrugName, DrugCategory, DrugID, DrugQuantity, DateExpiry, DateAdded}).then(res => {
       console.log(res);
       navigate("/showdrugs")
 
