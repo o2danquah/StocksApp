@@ -4,11 +4,13 @@ const mongoose = require("mongoose")
 const nodemailer = require("nodemailer");
 const { differenceInCalendarMonths } = require("date-fns");
 const nodeCron = require("node-cron");
+const bodyParser = require("body-parser");
 const UserModel = require("./DrugsSchema")
 // const dbconnection  = require("./")
 const app = express();
 app.use(cors());
-app.use(express.json())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 
 mongoose.connect("mongodb+srv://papa10058:Layzer2511@stocks.cjlx8n6.mongodb.net/?retryWrites=true&w=majority&appName=Stocks").then(() => {
     console.log("Database running")
@@ -110,20 +112,7 @@ app.get("/showdrugs", (req, res) => {
 
 
 
-// app.get("/showdrugs", (req, res) => {
 
-//    UserModel.find().then(
-//     drugs => res.json(drugs)
-//    ).catch(err => res.json(err))
-
-  
-
- 
-    
-       
-        
-    
-        // req.list = json;
 
         
 
