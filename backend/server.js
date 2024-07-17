@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json())
 
 
-mongoose.connect("mongodb://0.0.0.0:27017/Drugs").then(() => {
+mongoose.connect("mongodb+srv://papa10058:Layzer2511@stocks.cjlx8n6.mongodb.net/?retryWrites=true&w=majority&appName=Stocks").then(() => {
     console.log("Database running")
 }).catch((err) => {
     console.log(err)
@@ -98,7 +98,7 @@ app.get("/showdrugs", (req, res) => {
          
         }
 
-        nodeCron.schedule("10 * * * * *", () => {
+        nodeCron.schedule("50 * * * * *", () => {
             console.log("working")
             sendmail();
         })
