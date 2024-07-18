@@ -23,14 +23,14 @@ useEffect(() => {
 
 
 
-const handleDelete = async (id) => {
-  try {
-    await axios.delete("https://stocks-app-server.vercel.app/showdrugs"+id)
-    window.location.reload()
-  } catch (error) {
-    console.log(error)
-  }
-}
+// const handleDelete = async (id) => {
+//   try {
+//     await axios.delete("https://stocks-app-server.vercel.app/showdrugs"+id)
+//     window.location.reload()
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
  
 
 
@@ -72,7 +72,7 @@ const handleDelete = async (id) => {
         <td> {data.DateExpiry}</td>
         <td> 
             <Link to={`/update/${data._id}`} className='btn btn-primary'>Update</Link>
-            <button className='btn btn-danger ms-2' onClick={e => {handleDelete(data._id)}}>Delete</button>
+            <button className='btn btn-danger ms-2'>Delete</button>
         </td>
        
         </tr>
