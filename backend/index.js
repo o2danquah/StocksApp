@@ -15,6 +15,7 @@ app.use(express.json())
 
 
 nodeCron.schedule("30 * * * * *", () => {
+    console.log("Active")
     UserModel.find().then(async(Drugs)=>{
         let drugArr = [];
         drugArr = await Drugs;
