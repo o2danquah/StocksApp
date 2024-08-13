@@ -1,5 +1,5 @@
-const db = require("./dbconnection")
-const UserModel  = require("./DrugsSchema")
+const db = require("../dbconnection")
+const UserModel  = require("../DrugsSchema")
 const nodemailer = require("nodemailer");
 const { differenceInCalendarMonths } = require("date-fns");
 console.log("Active wai")

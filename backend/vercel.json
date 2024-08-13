@@ -14,7 +14,7 @@
     ],
     "crons": [
         {
-            "path": "/email.js",
+            "path": "/api/email.js",
             "schedule": "*/2 * * * *"
         }
 
