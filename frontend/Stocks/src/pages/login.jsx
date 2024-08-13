@@ -1,76 +1,90 @@
-// import React, { useState } from 'react'
-// import Validation from '../components/validation'
-// import { useNavigate } from 'react-router-dom'
-// import axios from 'axios'
-
-// const Login = () => {
-//     const navigate = useNavigate();
-//     const [logs, setLogs] = useState({
-//         email: "",
-//         pass: ""
-//     })
-
-//     const [errors, setErrors] = useState({})
-
-//     const handleInput = (event) => {
-//         setLogs( prev => ({...prev, [event.target.name] : [event.target.value]}))
-
-
-//    }
-
-//     const handleSubmit = (event) => {
-//          event.preventDefault();
-//          setErrors(Validation(logs));
-//          if(errors.email === "" && errors.pass === ""){
-//             axios.post("http://localhost:8081/", logs).then(res => {
-//              if(res.data === "success"){
-//                 navigate("/welcomepage")
-//              }
-//              else{
-//                 alert("No records found in database")
-//              }
-             
-//             }).catch(err => console.log( "Error" + err));
-
-//          }
-         
-//     }
-   
 
 import React, {useState} from 'react';
-import {  signInWithEmailAndPassword   } from 'firebase/auth';
+import {signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from '../firebase';
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { FETCH_STATUS } from "../components/Status"
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
      
     const Login = () => {
         const navigate = useNavigate();
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
-        const [Mailerror, setMailError] = useState('');
-        const [Passworderror, setPassError] = useState('');
+        const [Errors, setError] = useState('');
+        const [Status, setStatus] = useState("");
+        const [open, setOpen] = useState(true)
+        
+
+        const loader = () => { 
+          if(Status === "idle"  || Status === "loading"){
+            return <div>
+            <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 , }} open={open}>
+            <CircularProgress color="inherit" open={open}/>
+            </Backdrop>  
+           </div>
+          }
+            
+          
+          
+        }
+
+        const Alerter = () => {
+          if(Errors){
+            return <div className='row justify-content-center fixed-bottom '>
+              <Stack sx={{ width: '60%' }} spacing={2}>
+              <Alert severity="error"> {Errors} </Alert>
+            </Stack>
+            </div>
+          }
+        }
            
-        const onLogin = (e) => {
+        const onLogin = async(e) => {
+          setOpen(true)
+          console.log(Status)
+           setStatus(FETCH_STATUS.IDLE)
             e.preventDefault();
-            signInWithEmailAndPassword(auth, email, password)
+            await signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
+                setStatus(FETCH_STATUS.SUCCESS)
                 const user = userCredential.user;
-                navigate("/welcomepage")
-                console.log(user);
+                console.log(Status)
+                if(user){
+                  setOpen(false)
+                  navigate("/welcomepage")
+                }
             })
             .catch((error) => {
+              setOpen(false)
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                if (email === " "  || password === " "){
-                  setMailError("Input Email");
-                  setPassError("Input Password");
+                if (email === " "){
+                  setError("Please enter your username or email");
+                 
+                }
+                if(password === " "){
+                  setError("Please enter your password");
+                  
+                }
+                if(password === " "  && email === " "){
+                  setError("Hey!, inputs are empty"); 
                 }
                 if (errorMessage === "Firebase: Error (auth/invalid-email)."){
-                  setMailError("Invalid Email")
+                  setError("Invalid Email")
+                  
                 }
                 if (errorMessage === "Firebase: Error (auth/missing-password)."){
-                  setPassError("Invalid Password")
+                  setError("Oops, forgotten Password?")
+                 
                 }
+                if(errorMessage === "Firebase: Error (auth/invalid-credential)."){
+                  setError("Invalid Credentials")
+                }
+                
+                
                 
                 console.log( errorMessage)
             });
@@ -82,6 +96,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
   return (
     <React.Fragment>
         <div className="limiter">
+          {loader()}
   <div className="container-login100">
     <div className="wrap-login100">
       <div className="login100-pic js-tilt" data-tilt>
@@ -117,7 +132,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
           
         </div>
         <div className="text-center p-t-136">
-        <span className='text-danger'> {Mailerror || Passworderror}</span>
+        <span className='text-danger'> </span>
+        {Alerter()}
         </div>
       </form>
     </div>

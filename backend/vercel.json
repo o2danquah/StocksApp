@@ -11,5 +11,12 @@
          "src": "/(.*)",
          "dest": "/"
      }
+    ],
+    "crons": [
+        {
+            "path": "/email.js",
+            "schedule": "*/2 * * * *"
+        }
+
     ]
  }

@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getAuth } from 'firebase/auth'
+
+
+
+const auth = getAuth();
+
+
+
+const currentUsr = auth.currentUser
+
 
 const WelcomePage = () => {
+  
+
+
+  const getCurrentUser = () => {
+    if(currentUsr  !== null){
+      return currentUsr.email
+    }
+  }
+
+  
+  
+ 
+
+
   return (
-    <React.Fragment>
+
       <div>
         <section className="vh-100 gradient-custom">
     <div className="container py-5 h-100 ">
@@ -12,7 +36,7 @@ const WelcomePage = () => {
           <div className="card" style={{borderRadius: '1rem', background: 'white'}}>
            
             <div className="card-body p-5 text-center">
-                <label style={{fontFamily:"sans-serif", fontSize:"40px"}}>Welcome to Stocks</label>
+                <label style={{fontFamily:"sans-serif", fontSize:"40px"}}>Welcome to Stocks {getCurrentUser()}</label>
                  
                  
                  <div className="container-login100-form-btn m-t-17 pt-3 ">
@@ -34,7 +58,7 @@ const WelcomePage = () => {
     </div>
   </section>
   </div>
-    </React.Fragment>
+    
     
   )
 }
