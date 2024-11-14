@@ -8,6 +8,23 @@ body {
   background: linear-gradient(120deg,  #2E4552, #4F9B8F)
 }
 
+.offscreen{
+  color: green;
+}
+
+.hide{
+  color: aliceblue;
+}
+
+.instruction{
+  background-color: azure;
+  color: forestgreen;
+}
+
+.error {
+  color: red;
+}
+
 .Show-Drugs h2{
     color: aliceblue;
     text-align: center;
