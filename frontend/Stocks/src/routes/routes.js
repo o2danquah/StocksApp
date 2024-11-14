@@ -4,6 +4,7 @@ import Showdrugs from "../pages/showdrugs"
 import Login from "../pages/login"
 import UpdateDrugs from "../pages/update"
 import WelcomePage from "../pages/welcomepage"
+import HmsLoginPage from "../pages/HmsLoginPage"
 
 // eslint-disable-next-line
 export default [
@@ -26,6 +27,10 @@ export default [
     {
         path: '/update/:id',
         e: <UpdateDrugs/>
+    },
+    {
+        path: '/Hms',
+        e: <HmsLoginPage/>
     }
    
 ]

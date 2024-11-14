@@ -18,7 +18,7 @@ UserModel.find().then(async(Drugs)=>{
             const endDate = new Date(truncatedDate);
             return (differenceInCalendarMonths(endDate,startDate) == 1 || differenceInCalendarMonths(endDate,startDate) <=3)
     })
-
+    console.log(expiredDrugs)
     function  sendmail(){
 
         
@@ -64,12 +64,13 @@ UserModel.find().then(async(Drugs)=>{
      
      
     }
-    if(expiredDrugs === undefined || expiredDrugs.length == 0){
-        console.log("No expired Drugs")
-    }
-    else{
-        sendmail();
-    }
+
+    // if(expiredDrugs === undefined || expiredDrugs.length == 0){
+    //     console.log("No expired Drugs")
+    // }
+    // else{
+    //     sendmail();
+    // }
     
     
 })
